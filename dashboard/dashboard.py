@@ -4,11 +4,14 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 from babel.numbers import format_currency
+import os
 
 
 # load_data() untuk memanggil data
 def load_data() -> pd.DataFrame:
-    df = pd.read_csv('all_data.csv')
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_path = os.path.join(current_dir, 'all_data.csv')
+    df = pd.read_csv(csv_path)
     date_columns = ['order_purchase_timestamp', 'order_approved_at', 'order_delivered_carrier_date',
                     'order_delivered_customer_date', 'order_estimated_delivery_date']
     for column in date_columns:
